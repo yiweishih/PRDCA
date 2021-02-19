@@ -2,7 +2,7 @@ import requests
 import json
 import csv
 
-url= "https://api.preyproject.com/v1/devices"
+url = "https://api.preyproject.com/v1/devices"
 headers = {'apikey': 'WQFLFwxsryAp3hd2ccIFJrXqTLBThC0d'}
 response = requests.get(url, headers=headers)
 

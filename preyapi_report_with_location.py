@@ -11,9 +11,11 @@ response = requests.get(url, headers=headers)
 
 data = response.json()
 
-with open("D:/test.csv", "w", newline="") as external_device:
+#Remember to change the path to correct path in your producation or testing environment
+
+with open("/home/ansible/MobileDeviceReport.csv", "w", newline="") as external_device:
     csv_header_column = ["computer_name", "os_version", "windows_build_number", "logged_user", "bios_vendor",
-                         "bios_version", "mac_address", "city", "state", "country"]
+                         "bios_version", "mac_address", "city", "state", "country", "latitude", "longitude"]
     csv_writer = csv.writer(external_device)
     csv_writer.writerow(csv_header_column)  # write header
 
@@ -44,12 +46,14 @@ with open("D:/test.csv", "w", newline="") as external_device:
             except KeyError:
                 country = "None"
         except KeyError:
+            latitude = "None"
+            longitude = "None"
             city = "None"
             state = "None"
             country = "None"
 
         external_device_information = [computer_name, os_version, windows_build_number, logged_user, bios_vendor,
-                                       bios_version, mac_address, city, state, country]
+                                       bios_version, mac_address, city, state, country, latitude, longitude]
         csv_writer.writerow(external_device_information)
     external_device.close()
 

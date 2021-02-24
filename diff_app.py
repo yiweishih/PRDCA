@@ -9,14 +9,14 @@ def create_app_list(csv_file, mylist):
         mylist.append(app_name)
     return mylist
 
-app_white_list = csv.reader(open("/home/yiwei/PRDCA/a.csv"))
+app_white_list = csv.reader(open("./diff_app_sample/white_list.csv"))
 
 white_list = []
 result = {}
 create_app_list(app_white_list, white_list)
 
 
-path = "/home/yiwei/PRDCA/Client_File"
+path = "./diff_app_sample/Client_File"
 files = os.listdir(path)
 
 for file in files:
@@ -32,7 +32,7 @@ for file in files:
             diff_list.append(app_client)
     result[computer_name] = diff_list
 
-f = open("dict.txt","w")
+f = open("./diff_app_sample/diff_result.txt","w")
 for key,val in result.items():
     f.write("{} : {}\n".format(key,val))
 
